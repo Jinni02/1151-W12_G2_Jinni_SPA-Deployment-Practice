@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BNA-EMI W12 · Knowledge Base</title>
+<style>
+:root{--bg:#fbfcfd;--card:#ffffff;--tx:#2b3a4a;--mut:#6b7a8c;--bd:#dde5ee;--bar:#ffffff;--sh:0 2px 10px rgba(40,60,90,.07);color-scheme:light;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14181e;--card:#1d242d;--tx:#e6ecf2;--mut:#9aa8b8;--bd:#2c3744;--bar:#1a2028;--sh:none;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14181e;--card:#1d242d;--tx:#e6ecf2;--mut:#9aa8b8;--bd:#2c3744;--bar:#1a2028;--sh:none;color-scheme:dark}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 "Helvetica Neue",Arial,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;min-height:100vh;display:flex;flex-direction:column}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bar);z-index:30}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bar);border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:10px;padding:10px 14px}
+header h2{margin:0;font-size:1rem;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+button,.btn{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:6px 12px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;line-height:1.3}
+button:hover,.btn:hover{border-color:var(--mut)}
+button:focus-visible,a:focus-visible{outline:2px solid #5b8db8;outline-offset:2px}
+#menuBtn{width:40px;height:40px;justify-content:center;padding:0;font-size:1.2rem}
+nav{position:fixed;top:0;bottom:0;left:0;width:min(290px,84vw);background:var(--bar);border-right:1px solid var(--bd);z-index:50;transform:translateX(-100%);transition:transform .25s;padding:calc(env(safe-area-inset-top,0px) + 16px) 14px 20px;overflow-y:auto;visibility:hidden}
+nav.open{transform:none;visibility:visible}
+nav h3{margin:4px 8px 12px;font-size:.85rem;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
+nav a{display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:10px;color:var(--tx);text-decoration:none;border-left:4px solid transparent}
+nav a:hover{background:var(--bg)}
+nav a[aria-current="page"]{background:var(--bg);border-left-color:var(--ac);font-weight:600}
+.num{flex:none;width:26px;height:26px;border-radius:50%;background:var(--ac);color:#fff;font-size:.8rem;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+#ov{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:40;display:none}
+#ov.open{display:block}
+main{flex:1;width:100%;max-width:820px;margin:0 auto;padding:22px 16px 10px}
+h1{font-size:1.6rem;line-height:1.25;margin:4px 0 8px}
+.lead{color:var(--mut);margin:0 0 20px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}
+.tag{padding:3px 12px;border-radius:99px;border:1px solid var(--ac);font-size:.85rem;background:color-mix(in srgb,var(--ac) 10%,var(--card))}
+.flow{list-style:none;margin:0 0 18px;padding:0}
+.flow li{position:relative;display:flex;gap:14px;padding:0 0 18px}
+.flow li:not(:last-child)::before{content:"";position:absolute;left:16px;top:36px;bottom:2px;width:2px;background:var(--ac);opacity:.35}
+.flow .num{width:34px;height:34px;font-size:.95rem}
+.card{flex:1;background:color-mix(in srgb,var(--ac) 9%,var(--card));border:1px solid color-mix(in srgb,var(--ac) 35%,var(--bd));border-radius:14px;padding:12px 16px;box-shadow:var(--sh)}
+.card b{display:block}
+.card span{color:var(--mut);font-size:.93rem}
+a.card{color:inherit;text-decoration:none}
+.notes{margin:0 0 18px;padding:12px 16px;border-radius:14px;background:var(--card);border:1px dashed var(--mut);font-size:.93rem}
+.notes p{margin:4px 0}
+.pager{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;margin:26px 0 8px;padding-top:16px;border-top:1px solid var(--bd)}
+.pager .mid{order:0}
+footer{border-top:1px solid var(--bd);background:var(--bar);text-align:center;font-size:.85rem;color:var(--mut);padding:16px 14px;margin-top:20px}
+footer p{margin:2px 0}
+@media (max-width:520px){h1{font-size:1.35rem}.pager .btn,.pager button{flex:1 1 40%;justify-content:center}.pager .mid{order:3;flex-basis:100%}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}nav{transition:none}}
+</style>
+</head>
+<body>
+<header>
+  <button id="menuBtn" aria-label="Menu" aria-expanded="false" aria-controls="nav">☰</button>
+  <h2 id="hTitle"></h2>
+  <button id="langBtn" aria-label="Language"></button>
+  <button id="themeBtn" aria-label="Theme"></button>
+</header>
+<div id="ov"></div>
+<nav id="nav" aria-label="Modules"><h3 id="navH"></h3><div id="navList"></div></nav>
+<main id="main" tabindex="-1"></main>
+<footer>
+  <p id="fArch"></p>
+  <p id="fVer"></p>
+  <p id="fCopy"></p>
+</footer>
+
+<script>
+var VERSION = "v1.0.0";
+var YEAR = "2026";
+var AC = {home:"#5b8db8", analysis:"#5b8db8", service:"#5aa374", market:"#c9a02c", ai:"#7d73c2"};
+
+var UI = {
+  site: ["BNA-EMI W12 · Knowledge Base", "BNA-EMI W12 · 知識庫"],
+  menu: ["Modules", "模組"],
+  prev: ["← Previous page", "← 上一頁"],
+  next: ["Next page →", "下一頁 →"],
+  top: ["↑ Return to top", "↑ 回到頂端"],
+  arch: ["Architect: Jinni Chen", "架構設計：Jinni Chen"],
+  ver: ["Version " + VERSION, "版本 " + VERSION],
+  copy: ["© " + YEAR + " Jinni Chen. All rights reserved.", "© " + YEAR + " Jinni Chen。版權所有。"],
+  start: ["Start here", "從這裡開始"]
+};
+
+var P = [
+ { id:"home", n:"★", t:["Overview", "總覽"],
+   lead:["From analysis to a deployed service: four modules, one process. Tap a module or use the menu.", "從分析到上線服務：四個模組，一個流程。點選模組或使用左上選單。"],
+   steps:[
+    [["Analysis", "分析"], ["Separate → investigate → recombine, with evidences", "拆解 → 深入探究 → 以證據重組"], "analysis"],
+    [["Demand to Service", "從需求到服務"], ["Demand/Supply → PRD → BNA Agent → Webpage → Service", "需求／供給 → PRD → BNA Agent → 網頁 → 服務"], "service"],
+    [["Product, MVP and Market", "產品、MVP 與市場"], ["Product → MVP → Commercialized → Market and value", "產品 → MVP → 商業化 → 市場與價值"], "market"],
+    [["AI Build and Output", "AI 建置與產出"], ["Multimodal input → AI agents → documents and apps → deploy", "多模態輸入 → AI 代理 → 文件與應用 → 部署"], "ai"]
+   ] },
+ { id:"analysis", n:"1", t:["Analysis", "分析"],
+   lead:["Analysis (n.) is a three-step process that turns a problem into insight.", "分析是把問題轉化為洞見的三步驟流程。"],
+   tags:[["systematic","系統性"],["structured","結構化"],["process-oriented","流程導向"]],
+   steps:[
+    [["Separate", "拆解"], ["Break the problem, the demand and the questions into parts / components, and note the potential relationships among them.", "將問題、需求與疑問拆解為各個部分／組件，並留意它們之間的潛在關係。"]],
+    [["Investigate deeply", "深入探究"], ["Examine each component in depth.", "深入檢視每一個組件。"]],
+    [["Recombine", "重組"], ["Put the parts back together with evidences.", "以證據將各部分重新組合。"]],
+    [["Output", "產出"], ["A new representation (Coggle mind map) that gives insights.", "新的表徵（Coggle 心智圖），帶來洞見。"]]
+   ],
+   notes:[["○ Effective: the goal / purpose is reached.", "○ 有效（Effective）：達成目標／目的。"], ["✕ Efficient: output / inputs, not the criterion here.", "✕ 有效率（Efficient）：產出／投入，非此處的判準。"]] },
+ { id:"service", n:"2", t:["Demand to Service", "從需求到服務"],
+   lead:["The requirement document drives the build, from demand to a live service.", "需求文件主導整個建置過程，從需求一路到上線服務。"],
+   steps:[
+    [["Demand ⇄ Supply", "需求 ⇄ 供給"], ["Where the product comes from.", "產品的起點。"]],
+    [["Product", "產品"], ["What is offered to meet the demand.", "為滿足需求而提供的內容。"]],
+    [["Requirement Document (PRD)", "需求文件（PRD）"], ["Defines what the product must do.", "定義產品必須做到什麼。"]],
+    [["Functions + Verifications", "功能與驗證"], ["Each function is paired with a way to verify it.", "每項功能都對應一種驗證方式。"]],
+    [["BNA Agent", "BNA Agent"], ["The product the PRD specifies.", "即 PRD 所規範的產品。"]],
+    [["Webpage", "網頁"], ["The interface people use.", "使用者操作的介面。"]],
+    [["Service", "服務"], ["The delivered outcome.", "最終交付的成果。"]]
+   ] },
+ { id:"market", n:"3", t:["Product, MVP and Market", "產品、MVP 與市場"],
+   lead:["From a minimum product to a market where value is exchanged.", "從最小產品到價值交換的市場。"],
+   steps:[
+    [["Product (TP)", "產品（TP）"], ["Software / APP / application.", "軟體／App／應用程式。"]],
+    [["MVP", "MVP"], ["Minimum Viable Product.", "最小可行產品。"]],
+    [["Commercialized", "商業化"], ["To be transacted.", "完成交易。"]],
+    [["Market", "市場"], ["Producers ⇄ Consumers, with $ circulating.", "生產者 ⇄ 消費者，金流循環。"]],
+    [["Value (WTP) → TA", "價值（願付價格）→ 目標受眾"], ["Value is measured by willingness to pay, for the target audience.", "價值以願付價格衡量，對象為目標受眾。"]]
+   ] },
+ { id:"ai", n:"4", t:["AI Build and Output", "AI 建置與產出"],
+   lead:["Multimodal inputs go through AI agents and become documents and deployable apps.", "多模態輸入經 AI 代理，轉化為文件與可部署的應用。"],
+   steps:[
+    [["Multimodal inputs", "多模態輸入"], ["In-class note: hand-written (talking), voice recording, video, image / pictures, contents.", "課堂筆記：手寫（口述）、錄音、影片、圖片、內容。"]],
+    [["Chatbot", "聊天機器人"], ["Conversational AI.", "對話式 AI。"]],
+    [["Task agent", "任務代理"], ["Discussion / consultations → analysis and summary.", "討論／諮詢 → 分析與摘要。"]],
+    [["Coding agent", "程式代理"], ["Builds visuals and apps.", "產出視覺內容與應用。"]],
+    [["Document track", "文件軌"], [".md file (markdown format) → document: KB.md · hand off.md · PRD.md", ".md 檔（Markdown 格式）→ 文件：KB.md · hand off.md · PRD.md"]],
+    [["Visual / app track", "視覺／應用軌"], ["SVG (scalable vector graph), png / jpeg + .svg, SPA (single page app, html) → Deploy → http://", "SVG（可縮放向量圖）、png / jpeg + .svg、SPA（單頁應用，html）→ 部署 → http://"]]
+   ],
+   notes:[["Human side: creativity · critical thinking.", "人的角色：創造力 · 批判性思考。"]] }
+];
+
+var lang = "en", theme = "";
+try { lang = localStorage.getItem("bna-lang") || (/^zh/i.test(navigator.language) ? "zh" : "en"); theme = localStorage.getItem("bna-theme") || ""; } catch (e) {}
+var $ = function (id) { return document.getElementById(id); };
+var tx = function (a) { return a[lang === "zh" ? 1 : 0]; };
+var isDark = function () { return theme ? theme === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches; };
+
+function curIndex() {
+  var h = (location.hash || "").slice(1);
+  var i = P.findIndex(function (p) { return p.id === h; });
+  return i < 0 ? 0 : i;
+}
+
+function render(scroll) {
+  var i = curIndex(), p = P[i];
+  document.documentElement.lang = lang === "zh" ? "zh-Hant" : "en";
+  document.documentElement.style.setProperty("--ac", AC[p.id]);
+  if (theme) document.documentElement.setAttribute("data-theme", theme); else document.documentElement.removeAttribute("data-theme");
+  document.title = tx(p.t) + " · " + tx(UI.site);
+  $("hTitle").textContent = tx(UI.site);
+  $("langBtn").textContent = lang === "zh" ? "EN" : "中文";
+  $("themeBtn").textContent = isDark() ? "☀" : "☾";
+  $("navH").textContent = tx(UI.menu);
+  $("fArch").textContent = tx(UI.arch);
+  $("fVer").textContent = tx(UI.ver);
+  $("fCopy").textContent = tx(UI.copy);
+
+  $("navList").innerHTML = P.map(function (q) {
+    return '<a href="#' + q.id + '" style="--ac:' + AC[q.id] + '"' + (q.id === p.id ? ' aria-current="page"' : "") + '><span class="num">' + q.n + "</span>" + tx(q.t) + "</a>";
+  }).join("");
+
+  var h = "<h1>" + tx(p.t) + '</h1><p class="lead">' + tx(p.lead) + "</p>";
+  if (p.tags) h += '<div class="tags">' + p.tags.map(function (t) { return '<span class="tag">' + tx(t) + "</span>"; }).join("") + "</div>";
+  if (p.id === "home") {
+    h += '<ol class="flow">' + p.steps.map(function (s, k) {
+      return '<li style="--ac:' + AC[s[2]] + '"><span class="num">' + (k + 1) + '</span><a class="card" href="#' + s[2] + '"><b>' + tx(s[0]) + "</b><span>" + tx(s[1]) + "</span></a></li>";
+    }).join("") + "</ol>";
+  } else {
+    h += '<ol class="flow">' + p.steps.map(function (s, k) {
+      return '<li><span class="num">' + (k + 1) + '</span><div class="card"><b>' + tx(s[0]) + "</b><span>" + tx(s[1]) + "</span></div></li>";
+    }).join("") + "</ol>";
+  }
+  if (p.notes) h += '<div class="notes">' + p.notes.map(function (n) { return "<p>" + tx(n) + "</p>"; }).join("") + "</div>";
+
+  var prev = P[i - 1], next = P[i + 1];
+  h += '<div class="pager">' +
+    (prev ? '<a class="btn" href="#' + prev.id + '">' + tx(UI.prev) + "</a>" : '<span></span>') +
+    '<button class="mid" id="topBtn">' + tx(UI.top) + "</button>" +
+    (next ? '<a class="btn" href="#' + next.id + '">' + tx(UI.next) + "</a>" : '<span></span>') + "</div>";
+  $("main").innerHTML = h;
+  $("topBtn").onclick = function () { window.scrollTo({ top: 0, behavior: "smooth" }); };
+  if (scroll) window.scrollTo(0, 0);
+}
+
+function menu(open) {
+  $("nav").classList.toggle("open", open);
+  $("ov").classList.toggle("open", open);
+  $("menuBtn").setAttribute("aria-expanded", open ? "true" : "false");
+}
+function save() { try { localStorage.setItem("bna-lang", lang); localStorage.setItem("bna-theme", theme); } catch (e) {} }
+
+$("menuBtn").onclick = function () { menu(!$("nav").classList.contains("open")); };
+$("ov").onclick = function () { menu(false); };
+document.addEventListener("keydown", function (e) { if (e.key === "Escape") menu(false); });
+$("nav").addEventListener("click", function (e) { if (e.target.closest("a")) menu(false); });
+$("langBtn").onclick = function () { lang = lang === "zh" ? "en" : "zh"; save(); render(false); };
+$("themeBtn").onclick = function () { theme = isDark() ? "light" : "dark"; save(); render(false); };
+window.addEventListener("hashchange", function () { render(true); });
+render(false);
+</script>
+</body>
+</html>
